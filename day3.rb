@@ -1,11 +1,5 @@
 @input = File.open("inputs/day3_input.txt").read.split("\n").map { |cmd| cmd.strip }
 
-def part1
-  gamma_string = ''
-  @input.map{ |row| row.split('').map{ |num| num.to_i}}.transpose.each{ |col| col.count(0) < col.count(1) ? gamma_string += '1' : gamma_string += '0' }
-  gamma_string.to_i(2) * gamma_string.gsub('0', 'x').gsub('1', '0').gsub('x', '1').to_i(2) #lmao
-end
-
 def get_rating(keep_majority)
   rows = @input.map{ |row| row.split('').map{ |num| num.to_i}}
   i = 0
@@ -18,6 +12,9 @@ def get_rating(keep_majority)
 end
 
 # part1
-pp part1
-# part 2
-pp get_rating(true) * get_rating(false) #part2
+gamma_string = ''
+@input.map{ |row| row.split('').map{ |num| num.to_i}}.transpose.each{ |col| col.count(0) < col.count(1) ? gamma_string += '1' : gamma_string += '0' }
+pp gamma_string.to_i(2) * gamma_string.gsub('0', 'x').gsub('1', '0').gsub('x', '1').to_i(2) #lmao
+
+#part2
+pp get_rating(true) * get_rating(false)
